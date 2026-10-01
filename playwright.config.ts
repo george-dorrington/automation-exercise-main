@@ -4,9 +4,9 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -35,19 +35,35 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'dev-api',
+      testDir: './tests/api',
+      metadata: { environment: 'dev' },
+      use: {
+        baseURL: 'https://automationexercise.com/',
+      }
     },
-
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'dev-ui',
+      metadata: { environment: 'dev' },
+      use: { 
+        ...devices['Desktop Chrome'], 
+        baseURL: 'https://automationexercise.com/',},
     },
-
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: 'test-api',
+      testDir: './tests/api',
+      metadata: { environment: 'test' },
+      use: {
+        baseURL: 'https://test.automationexercise.com/',
+      }
     },
+    {
+      name: 'test-ui',
+      metadata: { environment: 'test' },
+      use: { 
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://test.automationexercise.com/',},
+    }
 
     /* Test against mobile viewports. */
     // {

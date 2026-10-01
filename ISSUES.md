@@ -19,7 +19,7 @@ Feel free to add more details as necessary.
 ## Documented Issues
 
 - Issue 1:
-  - Description:
+  - Description: Registration service can be slow to add users sometimes?
   - Found by:
   - Reproducible:
 
