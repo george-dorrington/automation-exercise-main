@@ -44,10 +44,12 @@ export default defineConfig({
     },
     {
       name: 'dev-ui',
+      testDir: './tests/ui',
       metadata: { environment: 'dev' },
-      use: { 
-        ...devices['Desktop Chrome'], 
-        baseURL: 'https://automationexercise.com/',},
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: 'https://automationexercise.com/',
+      },
     },
     {
       name: 'test-api',
@@ -59,10 +61,12 @@ export default defineConfig({
     },
     {
       name: 'test-ui',
+      testDir: './tests/ui',
       metadata: { environment: 'test' },
-      use: { 
+      use: {
         ...devices['Desktop Chrome'],
-        baseURL: 'https://test.automationexercise.com/',},
+        baseURL: 'https://test.automationexercise.com/',
+      },
     }
 
     /* Test against mobile viewports. */
