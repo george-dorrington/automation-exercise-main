@@ -39,7 +39,7 @@ export default defineConfig({
       testDir: './tests/api',
       metadata: { environment: 'dev' },
       use: {
-        baseURL: 'https://automationexercise.com/',
+        baseURL: 'https://automationexercise.com/api/',
       }
     },
     {
@@ -54,7 +54,7 @@ export default defineConfig({
       testDir: './tests/api',
       metadata: { environment: 'test' },
       use: {
-        baseURL: 'https://test.automationexercise.com/',
+        baseURL: 'https://test.automationexercise.com/api/',
       }
     },
     {

@@ -14,7 +14,10 @@
 - Improvement 1: Have seperate repostories for API and UI test 
   - Description: UI and API tests should live in seperate reposorties (ideally the source code repository). There's some maintenace overhead in maintaining two Playwright instances but I like the seperation of UI and API concerns.
 
-- Feedback 1: Decided against putting enviroment values in the .env file - they're not secrets :)
+  - Improvement 1: Remove reponse code from API body
+  - Description: Struck me as a little odd to have a HTTP status for the request and a response code in the response body that mimicks the same thing. Perhaps redundent? (as long as the request request status is correct!)
+
+- Feedback 1: Decided against putting enviroment values in the .env file - they're not secrets. Although it perhaps would of been quicker and easier.
   - Description:
 
 - Feedback 2: I haven't written Playwright API tests before (more familiar using REST Assured for Java/Spring services)
