@@ -6,4 +6,4 @@
   Description: Decided against putting enviroment values in the .env file - they're not secrets. Although it perhaps would of been quicker and easier.
 
   - Decision 3:
-  Description: Could look into fixtures in the future. Although I didn't see much value in having them just get for initialising the page objects.
+  Description: Could look into using fixtures in the future. Although I didn't see much value in having them for just initialising the page objects.
