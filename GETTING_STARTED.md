@@ -14,25 +14,58 @@
 
 ## Purpose
 
-Provide a description of the purpose of this document.
+This guide explains how to install dependencies, configure credentials, and run the Playwright tests locally.
 
 ## Getting the Latest Code
 
-Provide instructions on how to get the latest code.
+Clone the repository and move into its directory:
+
+```sh
+git clone https://github.com/george-dorrington/automation-exercise-main.git
+cd automation-exercise-main
+```
 
 ## Setting Up the Environment
 
-Provide instructions on how to set up the local environment, including any dependencies that need to be installed.
+Install the required depdencies with the following command:
+
+```
+npm ci 
+```
+
+Create a `.env` file in the root of the repository and add the below values. Update 'xxxx' to the appropirate credential. If you don't have development user at hand please create one via the UI (this could be automated in the future!!)
+
+```dotenv
+DEV_EMAIL=xxxx
+DEV_PASSWORD=xxxx
+TEST_EMAIL=xxxx
+TEST_PASSWORD=xxxx
+```
+
+
+If you don't have the chromium test runner installed you'll need to run the below command:
+
+```sh
+npx playwright install chromium
+```
 
 ## Running the Tests
 
-Provide instructions on how to run the tests.
+Run the full suite across both dev and test environments
 
-## Additional Details
+```
+npx playwright test
+```
 
-Provide any other details you find pertinent, such as troubleshooting tips, common issues, or additional setup steps.
+Run the API or UI suite against the dev or test environment
 
----
+```
+npx playwright test --project=dev-api
+npx playwright test --project=dev-ui
+
+npx playwright test --project=test-api
+npx playwright test --project=test-ui
+```
 
 ## Links
 
