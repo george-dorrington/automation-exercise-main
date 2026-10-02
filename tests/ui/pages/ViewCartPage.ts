@@ -8,10 +8,7 @@ export class ViewCartPage {
   }
 
   get cart() {
-    const cartTable = this.page.getByRole('table');
-    return cartTable.getByRole('row').filter({
-      has: this.page.getByRole('img'),
-    });
+  return this.page.locator('#cart_info_table tbody tr').filter({ has: this.page.locator('td') });
   }
 
   async clickRegisterLogin() {

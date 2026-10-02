@@ -34,9 +34,10 @@ test.describe('Checkout registration', () => {
 
     const { email, account, card } = createCheckoutTestData();
 
-    await homePage.addProductToCart('1');
+    await homePage.clickProduct('1');
     await homePage.clickContinueShopping();
-    await homePage.addProductToCart('2');
+    await homePage.clickProduct('2');
+    await homePage.clickContinueShopping();
     await homePage.clickCart();
 
     await expect(viewCartPage.heading).toBeVisible();
@@ -60,7 +61,7 @@ test.describe('Checkout registration', () => {
     await viewCartPage.clickProceedToCheckout();
     await expectCheckoutAddresses(checkoutPage, account);
 
-    await checkoutPage.addComment('Please leave the package at the front door.');
+    await checkoutPage.fillComment('Please leave the package at the front door.');
     await checkoutPage.clickPlaceOrder();
     await expect(paymentPage.heading).toBeVisible();
 
@@ -97,9 +98,9 @@ test.describe('Checkout registration', () => {
     await accountCreatedPage.clickContinue();
     await expect(homePage.loggedInAs(account.name)).toBeVisible();
     
-    await homePage.addProductToCart('1');
+    await homePage.clickProduct('1');
     await homePage.clickContinueShopping();
-    await homePage.addProductToCart('2');
+    await homePage.clickProduct('2');
     await homePage.clickContinueShopping();
     await homePage.clickCart();
 
@@ -108,7 +109,7 @@ test.describe('Checkout registration', () => {
     await viewCartPage.clickProceedToCheckout();
 
     await expectCheckoutAddresses(checkoutPage, account);
-    await checkoutPage.addComment('Please leave the package at the front door.');
+    await checkoutPage.fillComment('Please leave the package at the front door.');
     await checkoutPage.clickPlaceOrder();
     await expect(paymentPage.heading).toBeVisible();
 

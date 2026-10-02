@@ -15,11 +15,11 @@ export class HomePage {
     return this.page.getByText(`Logged in as ${name}`);
   }
   
-  async addProductToCart(productId: string) {
-    const productCard = this.getProductCard(productId);
-    
-    await productCard.hover();
-    await productCard.locator(`.product-overlay [data-product-id="${productId}"]`).click();
+  async clickProduct(productId: string) {
+    const product = this.getProduct(productId);
+
+    await product.hover();
+    await product.locator(`.product-overlay [data-product-id="${productId}"]`).click();
   }
 
   async clickContinueShopping() {
@@ -38,7 +38,7 @@ export class HomePage {
     await this.page.getByRole('link', { name: 'Delete Account' }).click();
   }
 
-  private getProductCard(productId: string): Locator {
+  private getProduct(productId: string): Locator {
     const productCards = this.page.locator('.features_items .single-products');
     const productLink = this.page.locator(`[data-product-id="${productId}"]`);
 

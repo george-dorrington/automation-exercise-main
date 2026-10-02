@@ -11,7 +11,7 @@ export class CheckoutPage {
     return this.page.locator('#address_invoice');
   }
 
-  async addComment(comment: string) {
+  async fillComment(comment: string) {
     await this.page.locator('textarea[name="message"]').fill(comment);
   }
 
