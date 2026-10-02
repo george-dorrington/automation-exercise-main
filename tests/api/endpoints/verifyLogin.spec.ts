@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { getCredentials } from '../../../support/credentials';
-import { deleteVerifyLogin, postVerifyLogin } from '../clients/verifyLogin';
+import { deleteVerifyLogin, postVerifyLogin } from '../clients/VerifyLogin';
 
 test.describe('verifyLogin endpoint', () => {
 
