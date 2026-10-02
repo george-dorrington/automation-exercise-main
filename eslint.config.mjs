@@ -1,0 +1,17 @@
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+
+export default tseslint.config(
+  {
+    ignores: ['node_modules/**', 'playwright-report/**', 'test-results/**'],
+  },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended,
+  {
+    rules: {
+      curly: 'error',
+      'prefer-const': 'error',
+      'no-var': 'error',
+    },
+  },
+);

@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "1. **Create a Public Repository**",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/george-dorrington/automation-exercise-main.git"
@@ -17,8 +21,13 @@
   },
   "homepage": "https://github.com/george-dorrington/automation-exercise-main#readme",
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.6.3",
-    "dotenv": "^18.0.5"
+    "dotenv": "^18.0.5",
+    "eslint": "^10.11.0",
+    "husky": "^9.1.7",
+    "typescript-eslint": "^8.71.0"
   }
 }

@@ -49,6 +49,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'https://automationexercise.com/',
+        testIdAttribute: 'data-qa',
       },
     },
     {
@@ -66,6 +67,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         baseURL: 'https://test.automationexercise.com/',
+        testIdAttribute: 'data-qa',
       },
     }
 
