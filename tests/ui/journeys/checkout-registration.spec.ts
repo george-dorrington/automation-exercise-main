@@ -1,11 +1,9 @@
 import { expect, test } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 
-import { AddToCartModalPage } from '../pages/AddToCartModalPage';
 import { AccountCreatedPage } from '../pages/AccountCreatedPage';
 import { AccountDeletedPage } from '../pages/AccountDeletedPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
-import { CheckoutPromptModalPage } from '../pages/CheckoutPromptModalPage';
 import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 import { OrderPlacedPage } from '../pages/OrderPlacedPage';
@@ -25,9 +23,7 @@ test.describe('Checkout registration', () => {
 
   test('scenario 14 - register a new user whilst completing a checkout', async ({ page }) => {
     const homePage = new HomePage(page);
-    const addToCartModalPage = new AddToCartModalPage(page);
     const checkoutPage = new CheckoutPage(page);
-    const checkoutPromptModalPage = new CheckoutPromptModalPage(page);
     const viewCartPage = new ViewCartPage(page);
     const loginPage = new LoginPage(page);
     const signupPage = new SignupPage(page);
@@ -39,14 +35,14 @@ test.describe('Checkout registration', () => {
     const { email, account, card } = createCheckoutTestData();
 
     await homePage.addProductToCart('1');
-    await addToCartModalPage.clickContinueShopping();
+    await homePage.clickContinueShopping();
     await homePage.addProductToCart('2');
     await homePage.clickCart();
 
     await expect(viewCartPage.heading).toBeVisible();
-    await expect(viewCartPage.items).toHaveCount(2);
+    await expect(viewCartPage.cart).toHaveCount(2);
     await viewCartPage.clickProceedToCheckout();
-    await checkoutPromptModalPage.clickRegisterLogin();
+    await viewCartPage.clickRegisterLogin();
 
     await loginPage.startSignup(account.name, email);
 
@@ -60,7 +56,7 @@ test.describe('Checkout registration', () => {
     await homePage.clickCart();
 
     await expect(viewCartPage.heading).toBeVisible();
-    await expect(viewCartPage.items).toHaveCount(2);
+    await expect(viewCartPage.cart).toHaveCount(2);
     await viewCartPage.clickProceedToCheckout();
     await expectCheckoutAddresses(checkoutPage, account);
 
@@ -81,7 +77,6 @@ test.describe('Checkout registration', () => {
 
   test('scenario 15 - register a new user before completing a checkout', async ({ page }) => {
     const homePage = new HomePage(page);
-    const addToCartModalPage = new AddToCartModalPage(page);
     const checkoutPage = new CheckoutPage(page);
     const viewCartPage = new ViewCartPage(page);
     const loginPage = new LoginPage(page);
@@ -103,13 +98,13 @@ test.describe('Checkout registration', () => {
     await expect(homePage.loggedInAs(account.name)).toBeVisible();
     
     await homePage.addProductToCart('1');
-    await addToCartModalPage.clickContinueShopping();
+    await homePage.clickContinueShopping();
     await homePage.addProductToCart('2');
-    await addToCartModalPage.clickContinueShopping();
+    await homePage.clickContinueShopping();
     await homePage.clickCart();
 
     await expect(viewCartPage.heading).toBeVisible();
-    await expect(viewCartPage.items).toHaveCount(2);
+    await expect(viewCartPage.cart).toHaveCount(2);
     await viewCartPage.clickProceedToCheckout();
 
     await expectCheckoutAddresses(checkoutPage, account);
@@ -161,16 +156,16 @@ function createCheckoutTestData(): {
   };
 }
 
-async function expectCheckoutAddresses(checkoutPage: CheckoutPage, account: AccountDetails) {
+async function expectCheckoutAddresses(checkoutPage: CheckoutPage, accountDetails: AccountDetails) {
   for (const addressSection of [checkoutPage.deliveryAddress(), checkoutPage.billingAddress()]) {
-    await expect(addressSection).toContainText(account.firstName);
-    await expect(addressSection).toContainText(account.lastName);
-    await expect(addressSection).toContainText(account.address);
-    await expect(addressSection).toContainText(account.city);
-    await expect(addressSection).toContainText(account.state);
-    await expect(addressSection).toContainText(account.zipcode);
-    await expect(addressSection).toContainText(account.country);
-    await expect(addressSection).toContainText(account.mobileNumber);
+    await expect(addressSection).toContainText(accountDetails.firstName);
+    await expect(addressSection).toContainText(accountDetails.lastName);
+    await expect(addressSection).toContainText(accountDetails.address);
+    await expect(addressSection).toContainText(accountDetails.city);
+    await expect(addressSection).toContainText(accountDetails.state);
+    await expect(addressSection).toContainText(accountDetails.zipcode);
+    await expect(addressSection).toContainText(accountDetails.country);
+    await expect(addressSection).toContainText(accountDetails.mobileNumber);
   }
 }
 

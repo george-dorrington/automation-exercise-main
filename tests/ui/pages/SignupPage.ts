@@ -4,61 +4,17 @@ export class SignupPage {
   constructor(private readonly page: Page) { }
 
   async fillAccountDetails(details: AccountDetails) {
-    await this.selectTitle(details.title);
-    await this.fillName(details.name);
-    await this.fillPassword(details.password);
-    await this.fillFirstName(details.firstName);
-    await this.fillLastName(details.lastName);
-    await this.fillAddress(details.address);
-    await this.selectCountry(details.country);
-    await this.fillState(details.state);
-    await this.fillCity(details.city);
-    await this.fillZipcode(details.zipcode);
-    await this.fillMobileNumber(details.mobileNumber);
-  }
-
-  async selectTitle(title: 'Mr' | 'Mrs') {
-    await this.page.locator(`input[name="title"][value="${title}"]`).check();
-  }
-
-  async fillName(name: string) {
-    await this.page.getByTestId('name').fill(name);
-  }
-
-  async fillPassword(password: string) {
-    await this.page.getByTestId('password').fill(password);
-  }
-
-  async fillFirstName(firstName: string) {
-    await this.page.getByTestId('first_name').fill(firstName);
-  }
-
-  async fillLastName(lastName: string) {
-    await this.page.getByTestId('last_name').fill(lastName);
-  }
-
-  async fillAddress(address: string) {
-    await this.page.getByTestId('address').fill(address);
-  }
-
-  async selectCountry(country: string) {
-    await this.page.getByTestId('country').selectOption(country);
-  }
-
-  async fillState(state: string) {
-    await this.page.getByTestId('state').fill(state);
-  }
-
-  async fillCity(city: string) {
-    await this.page.getByTestId('city').fill(city);
-  }
-
-  async fillZipcode(zipcode: string) {
-    await this.page.getByTestId('zipcode').fill(zipcode);
-  }
-
-  async fillMobileNumber(mobileNumber: string) {
-    await this.page.getByTestId('mobile_number').fill(mobileNumber);
+    await this.page.locator(`input[name="title"][value="${details.title}"]`).check();
+    await this.page.getByTestId('name').fill(details.name);
+    await this.page.getByTestId('password').fill(details.password);
+    await this.page.getByTestId('first_name').fill(details.firstName);
+    await this.page.getByTestId('last_name').fill(details.lastName);
+    await this.page.getByTestId('address').fill(details.address);
+    await this.page.getByTestId('country').selectOption(details.country);
+    await this.page.getByTestId('state').fill(details.state);
+    await this.page.getByTestId('city').fill(details.city);
+    await this.page.getByTestId('zipcode').fill(details.zipcode);
+    await this.page.getByTestId('mobile_number').fill(details.mobileNumber);
   }
 
   async clickCreateAccount() {

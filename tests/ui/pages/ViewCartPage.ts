@@ -7,11 +7,15 @@ export class ViewCartPage {
     return this.page.getByText('Shopping Cart', { exact: true });
   }
 
-  get items() {
+  get cart() {
     const cartTable = this.page.getByRole('table');
     return cartTable.getByRole('row').filter({
       has: this.page.getByRole('img'),
     });
+  }
+
+  async clickRegisterLogin() {
+    await this.page.getByRole('link', { name: 'Register / Login' }).click();
   }
 
   async clickProceedToCheckout() {

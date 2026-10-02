@@ -67,6 +67,8 @@ npx playwright test --project=test-api
 npx playwright test --project=test-ui
 ```
 
+For the UI tests you can add the --headed and --debug modifiers as required :)
+
 ## Links
 
 [README](README.md) | [EXERCISE](EXERCISE.md) | [ISSUES](ISSUES.md) | [FEEDBACK](FEEDBACK.md)

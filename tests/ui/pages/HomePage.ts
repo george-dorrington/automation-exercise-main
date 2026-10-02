@@ -17,10 +17,13 @@ export class HomePage {
   
   async addProductToCart(productId: string) {
     const productCard = this.getProductCard(productId);
+    
     await productCard.hover();
-    await productCard
-      .locator(`.product-overlay [data-product-id="${productId}"]`)
-      .click();
+    await productCard.locator(`.product-overlay [data-product-id="${productId}"]`).click();
+  }
+
+  async clickContinueShopping() {
+    await this.page.getByRole('button', { name: 'Continue Shopping' }).click();
   }
 
   async clickCart() {

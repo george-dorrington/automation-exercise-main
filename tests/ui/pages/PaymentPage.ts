@@ -1,13 +1,5 @@
 import type { Page } from '@playwright/test';
 
-export type CardDetails = {
-  nameOnCard: string;
-  cardNumber: string;
-  cvc: string;
-  expiryMonth: string;
-  expiryYear: string;
-};
-
 export class PaymentPage {
   constructor(private readonly page: Page) { }
 
@@ -47,3 +39,11 @@ export class PaymentPage {
     await this.page.getByRole('button', { name: 'Pay and Confirm Order' }).click();
   }
 }
+
+export type CardDetails = {
+  nameOnCard: string;
+  cardNumber: string;
+  cvc: string;
+  expiryMonth: string;
+  expiryYear: string;
+};
